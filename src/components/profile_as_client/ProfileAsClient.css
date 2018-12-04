@@ -1,0 +1,253 @@
+/* .add-intro__pin:after, .box-attachments li a:before, .browse-skills>ul a:before, .btn-select:after, .course-box-img:after, .fav-icon, .list-bundles .skill:after, .onboarding .upload-photo .attach-file-inline a:before, .panel-add-steps .panel-body ul li:before, .profile-component.edit-in-place .edit-btn:before, .profile-component .profile-photo .upload-photo .attach-file-inline a:before, .profile-stars .stars-bg, .profile-stars .stars-fill, .show-password-toggle input[type=checkbox]+label:before {
+    font-family: WorkanaNewDesign!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    text-align: left;
+}
+
+.profile-stars {
+    display: inline-block;
+    font-size: 18px;
+    vertical-align: middle;
+    letter-spacing: 1px;
+}
+
+.profile-stars .stars-bg {
+    position: relative;
+}
+
+.profile-stars .stars-bg, .profile-stars .stars-fill {
+    word-wrap: normal;
+    color: #b5b5b5;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.profile-stars .stars-fill {
+    color: #ffc73b;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.profile-stars .stars-caption {
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0 10px;
+    padding-top: 2px;
+}
+
+.country, .payment {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.flag {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url(https://wkncdn.com/newx/assets/build/img/flags-newdesign.93d85ec3c.png);
+    background-color: #efefef;
+    background-position: 100% 100%;
+    border-radius: 12px;
+    border: 1px solid #efefef;
+    margin-top: -2px;
+}
+
+.rating {
+    margin-right: 30px;
+    display: inline-block;
+    margin-top: 18px;
+}
+
+.card-body {
+    text-align: left;
+}
+
+ */
+
+ .ProfileAsClient .file-input {
+    visibility: hidden;
+    /* width: 20px; */
+    /* margin: 0 auto; */
+}
+
+.ProfileAsClient .file-input::before {
+    background-color: transparent;
+    border: 1px solid transparent;
+    content: "Editar foto";
+    display: inline-block;
+    padding: 5px 54px 0;
+    /* padding: 0 auto; */
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    visibility: visible;
+    position: absolute;
+    color: #1d84b5;
+}
+
+.ProfileAsClient .h1 {
+    color: #4a4a4a;
+    font-size: 35px;
+    text-align: left;
+}
+
+.ProfileAsClient .feature {
+    text-align: left;
+    padding: 10px;
+    padding-right: 0px;
+}
+
+.ProfileAsClient .feature h2 {
+    font-size: 28px;
+    margin-bottom: 9px;
+}
+
+.ProfileAsClient .feature .about-me {
+    font-size: 16px;
+}
+
+.ProfileAsClient .profile-photo img {
+    border-radius: 50%;
+    height: auto;
+    /* width: 100%; */
+    width: 185px;
+    height: 185px;
+    vertical-align: middle;
+    border: 0;
+}
+
+.ProfileAsClient .profile-photo .profile-photo .edit-btn {
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -17px;
+    margin-left: -17px; */
+    font-size: 0;
+    color: transparent;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.ProfileAsClient .nav-item .nav-link {
+    color: #6f6f6f;
+    cursor: pointer;
+}
+
+.ProfileAsClient .nav-item .active {
+    color: #007bff;
+}
+
+
+.ProfileAsClient img {
+    margin-right: 50%;
+}
+
+.ProfileAsClient .cardtwo {
+    background-color: #15A2CF;
+}
+
+.ProfileAsClient #Pe {
+    float: right;
+}
+
+.ProfileAsClient #izq {
+    float: right;
+}
+
+.ProfileAsClient #izq1 {
+    float: right;
+    margin-bottom: 3%;
+}
+
+.ProfileAsClient #der {
+    float: left;
+}
+
+/* The switch - the box around the slider */
+
+.ProfileAsClient .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+
+.ProfileAsClient .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+
+.ProfileAsClient .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.ProfileAsClient .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.ProfileAsClient input:checked+.slider {
+    background-color: #2196F3;
+}
+
+.ProfileAsClient input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+.ProfileAsClient input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+
+.ProfileAsClient .slider.round {
+    border-radius: 34px;
+}
+
+.ProfileAsClient .slider.round:before {
+    border-radius: 50%;
+}
+
+@media (max-width: 767px){
+    .ProfileAsClient .profile-photo img {
+        max-width: 90px;
+        width: 100%;
+        height: 90px;
+    }
+}

@@ -1,0 +1,9 @@
+  /* RESPONSIVE CSS
+-------------------------------------------------- */
+@media (min-width: 768px) {
+    /* Bump up size of carousel content */
+    .Header .navbar {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}

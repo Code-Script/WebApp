@@ -1,0 +1,20 @@
+.UploadFiles .file-input {
+    visibility: hidden;
+    /* width: 20px; */
+    /* margin: 0 auto; */
+}
+
+.UploadFiles .file-input::before {
+    background-color: transparent;
+    border: 1px solid transparent;
+    content: "Subir archivos";
+    display: inline-block;
+    padding: 5px 54px 0;
+    /* padding: 0 auto; */
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    visibility: visible;
+    position: absolute;
+    color: #1d84b5;
+}

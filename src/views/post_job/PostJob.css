@@ -1,0 +1,225 @@
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+/* jquery validation */
+label.error {
+    color: #e7505a;
+    margin-left: 10px;
+    padding: 7px;
+}
+input.error {
+    border: 2px solid #e7505a;
+}
+       body{
+            background-color: #f0f0f0;
+        }
+        .caja{
+            background-color: white;
+            transition: 1s;
+        }
+        .caja:hover{
+        
+           color: black;
+            box-shadow: 2px 2px 8px 10px #36aff0;
+        }
+.img{
+    width: 100%;
+}
+        .btnfloat{
+            background-color:#0a6484;
+            border: none;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            position: fixed;
+            right: 10px;
+            top: 20px;
+            transition: 1s;
+        }
+        .btnfloat:hover{
+            background-color: #148bb7; 
+        }
+        .btncomienza{
+            background-color: #0a6484;
+            color: #bcbcbc;
+            width: 180px;
+            position: absolute;
+            right: 10px;
+            transition: 1s;
+            
+        }
+        .btncomienza:hover{
+            background-color: #148bb7; 
+        }
+
+
+
+
+.btnstep{
+      background-color: #0a6484;
+            color: #f5f4f4;
+            width: 180px;
+            transition: 1s; 
+}
+.btnstep:hover{
+      background-color: #148bb7; 
+}  
+.cajaproyecto{
+    box-shadow: 2px 2px 8px 10px #cccccc;
+    background-color: white;
+}
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+   However, delay the fade out process for 2.5 seconds */
+   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+   animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+
+
+.step-app > .step-steps {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    border-radius: 3px 3px 0 0;
+    overflow: hidden;
+  }
+  .step-app > .step-steps > li {
+    list-style: none;
+    flex: 1;
+  }
+  .step-app > .step-steps > li:last-child a {
+    border: none;
+  }
+  .step-app > .step-steps > li > a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    background-color: #e5e5e5;
+    text-decoration: none;
+    border-right: 1px solid #fff;
+  }
+  .step-app > .step-steps > li > a > .number {
+    background: #fff;
+    padding: 0 8px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 15px;
+    border-radius: 3px;
+    color: #333;
+  }
+  .step-app > .step-steps > li > a:hover {
+    background-color: #ddd;
+  }
+  .step-app > .step-steps > li.active a {
+    background-color: #32c5d2;
+    color: #fff;
+  }
+  .step-app > .step-steps > li.error a {
+    background-color: #e7505a;
+    color: #fff;
+  }
+  .step-app > .step-steps > li.done a {
+    background-color: #3cb371;
+    color: #fff;
+  }
+  .step-app > .step-content {
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    border-top: 0;
+  }
+  .step-app > .step-content > .step-tab-panel {
+    display: none;
+  }
+  .step-app > .step-content > .step-tab-panel.active {
+    display: block;
+  }
+  .step-app > .step-footer {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .step-app > .step-footer > .step-btn {
+    padding: 4px 16px;
+    color: #333;
+    text-decoration: none;
+    background: #e5e5e5;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  /*# sourceMappingURL=jquery-steps.css.map */
+
+/* Tablets en horizonal y escritorios normales */
+@media (min-width: 768px) and (max-width: 1199px) { 
+    
+}
+
+/* Móviles en horizontal o tablets en vertical */
+@media (max-width: 767px) { 
+    select.form-control {
+        /* width: 100%; */
+        margin-bottom: 10px;
+    }
+}
+
+/* Móviles en vertical */
+@media (max-width: 405px) { 
+    .PostJob button.btn-info, 
+    .PostJob button.btn-secondary {
+        width: 50%;
+        /* padding-left: 5px !important;
+        padding-right: 5px !important; */
+    }
+
+    .PostJob .btn {
+        width: 49% !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+
+    /* .PostJob button.btn-info {
+        margin-right: ;
+    } */
+}

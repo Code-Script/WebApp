@@ -1,0 +1,40 @@
+.Publish .file-input {
+    visibility: hidden;
+}
+
+.Publish .file-input::before {
+    /* background-color: transparent; */
+    /* border: 1px solid transparent; */
+    color: #000;
+    content: "Subir archivo";
+    /* content: "\f574"; */
+    /* display: inline-block; */
+    /* padding: 5px 54px 0; */
+    /* padding: 0 auto; */
+    /* outline: none; */
+    cursor: pointer;
+    font-size: 20px;
+    visibility: visible;
+    position: absolute;
+    color: #1d84b5;
+
+
+    font-family: "Font Awesome 5 Free"; /* This is the correct font-family*/
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+
+
+    display: block;
+    width: 150px;
+    height: 125px;
+    padding: .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

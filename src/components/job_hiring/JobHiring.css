@@ -1,0 +1,10 @@
+.JobHiring .options svg {
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.JobHiring .d-flex div p,
+.JobHiring .d-flex div h5 {
+    margin: 0;
+    margin-bottom: 7px;
+}

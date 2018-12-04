@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+
+  <title>NetJob</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+
+  <!-- Assets -->
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
+  <link rel="stylesheet" type="text/css" href="./fonts/fontawesome-5.5.0/css/all.css">
+  <link rel="stylesheet" type="text/css" href="./fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+
+  <!-- <link rel="stylesheet" type="text/css" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" /> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" crossorigin="anonymous" />
+
+  <!-- Icons font CSS-->
+  <!-- <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> -->
+  <!-- Font special for pages-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Vendor CSS-->
+  <!-- <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all"> -->
+  <!-- <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all"> -->
+
+  <style type="text/css">
+    @font-face {
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      src: url(https://example.com/MaterialIcons-Regular.eot);
+      /* For IE6-8 */
+      src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+        url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+        url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+    }
+
+    @font-face {
+      font-family: Poppins-Regular;
+      src: url('./fonts/poppins/Poppins-Regular.ttf');
+    }
+
+    @font-face {
+      font-family: Poppins-Medium;
+      src: url('./fonts/poppins/Poppins-Medium.ttf');
+    }
+
+    @font-face {
+      font-family: Poppins-Bold;
+      src: url('./fonts/poppins/Poppins-Bold.ttf');
+    }
+
+    @font-face {
+      font-family: Poppins-SemiBold;
+      src: url('./fonts/poppins/Poppins-SemiBold.ttf');
+    }
+
+    /*-- Animación Cargando --*/
+    .preloader {
+      border: 20px solid #f3f3f3;
+      border-top: 20px solid #3498db;
+      border-radius: 50%;
+      width: 125px;
+      height: 125px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="root">
+    <div style="width:100vw; height:100vh; display:flex; justify-content:center; align-items:center; overflow:hidden;">
+      <div class="preloader"></div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+
+  <!-- <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha512.js"></script> -->
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <!-- <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <!-- Font Awesome JS -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+  <script>
+    $(document).ready(() => {
+      // $(function () {
+      //   $('[data-toggle="popover"]').popover()
+      // })
+      jQuery.noConflict(); 
+      $('[data-toggle="popover"]').popover({ html: true, trigger: "focus" });
+      // $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+  <!-- Vendor JS-->
+  <!-- <script src="vendor/select2/select2.min.js"></script> -->
+  <!-- <script src="vendor/datepicker/moment.min.js"></script> -->
+  <!-- <script src="vendor/datepicker/daterangepicker.js"></script> -->
+
+  <!-- Main JS-->
+  <!-- <script src="js/global.js"></script> -->
+</body>
+
+</html>

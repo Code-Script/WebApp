@@ -1,0 +1,107 @@
+#SignUpModal .modal-content {
+    max-width: 440px;
+}
+
+
+/* Shared */
+#SignUpModal .loginBtn {
+    box-sizing: border-box;
+    position: relative;
+    /* width: 13em;  - apply for fixed size */
+    margin: 0.2em;
+    padding: 0 15px 0 46px;
+    border: none;
+    text-align: left;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.2em;
+    font-size: 16px;
+    color: #FFF;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+#SignUpModal   .loginBtn:before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 100%;
+    margin-top: 6px;
+  }
+#SignUpModal  .loginBtn:focus {
+    outline: none;
+  }
+ #SignUpModal .loginBtn:active {
+    box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+  }
+  
+  
+  /* Facebook */
+  #SignUpModal  .loginBtn--facebook {
+    text-align: center;
+    background-color: #3c579a;
+    background-image: linear-gradient(#3c579a, #3B55A0);
+    text-shadow: 0 -1px 0 #354C8C;
+    
+  }
+  #SignUpModal  .loginBtn--facebook:before {
+    /* border-right: #364e92 1px solid; */
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+  }
+  #SignUpModal  .loginBtn--facebook:hover,
+  #SignUpModal  .loginBtn--facebook:focus {
+    background-color: #5B7BD5;
+    background-image: linear-gradient(#5B7BD5, #4864B1);
+  }
+  
+  
+  /* Google */
+  #SignUpModal  .loginBtn--google {
+    /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+    text-align: center;
+    background: #DD4B39;
+  }
+  #SignUpModal .loginBtn--google:before {
+    /* border-right: #BB3F30 1px solid; */
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+  }
+  #SignUpModal  .loginBtn--google:hover,
+  #SignUpModal  .loginBtn--google:focus {
+    background: #E74B37;
+  }
+
+  /*Email*/
+  #SignUpModal   .loginBtn--email{
+      background: #98c336;
+      color: #fff;
+  }
+
+  #SignUpModal  main{
+    width: 100%;
+    /* height: 390px; */
+    /* border-radius: 5px; */
+    /* background: #fff; */
+    /* box-shadow: 0px 5px 5px #33333385; */
+    /* padding: 30px 25px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#SignUpModal h1{
+    color: #333;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+#SignUpModal .text-secundary{
+    text-align: center;
+    padding: 10px 0;
+    color: #a0a0a0;
+}

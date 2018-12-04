@@ -1,0 +1,46 @@
+button.disabled {
+    cursor: not-allowed; 
+    box-shadow: none;
+}
+
+.SelectCategory .Category .checked {
+    box-shadow: inset 2px 2px 0 #2f9aee, inset -2px -2px 0 #2f9aee, inset 2px -2px 0 #2f9aee, inset -2px 2px 0 #2f9aee;
+    color: #2f9aee;
+}
+
+.SelectCategory .Category .checked .category-item {
+    box-shadow: inset 2px 2px 0 #2f9aee, inset -2px -2px 0 #2f9aee, inset 2px -2px 0 #2f9aee, inset -2px 2px 0 #2f9aee;
+    color: #2f9aee;
+}
+
+.Category .checked .category-p {
+    color: #2f9aee;
+}
+
+.SelectCategory .Category .category-item {
+    padding-left: 0px; 
+    padding-right: 0px;
+}
+/* 
+.category-item button {
+    width: 100%;
+    height: 100%;
+  background: none;
+  border: 0;
+  border-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none; 
+   -webkit-appearance: button; 
+     -moz-user-select: none;
+      -ms-user-select: none;
+}
+
+.category-item button::after {
+    border-color: transparent;
+
+} */

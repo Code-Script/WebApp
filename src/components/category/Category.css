@@ -1,0 +1,125 @@
+.Category .category-item {
+  width: 100%;
+  height: 90%;
+  cursor: pointer;
+  border: 1px solid #d5d5d5;
+  padding: 8px;
+  padding-bottom: 12px;
+  user-select: none;
+  border-radius: 3px; 
+  background-color: #fff;
+}
+
+.Category .category-item:hover {
+    background: rgba(230, 230, 200, 0.4);
+    border: 1px solid #cacaca;
+    border-radius: 3px; 
+}
+
+.Category .category-item .category-i {
+  font-size: 5rem;
+  /* color: rgb(0, 50, 100); */
+  color: rgb(0, 123, 200);
+}
+
+.Category .category-item .category-p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #686868;
+  padding-top: 5px;
+}
+
+.Category a {
+  text-decoration: none;
+}
+
+.buttonSkills{
+  margin-top: 50px;
+}
+
+/* .Category .category-item {
+    background: #FFF;
+    margin-right: 10px; 
+    cursor: pointer;
+    box-shadow: 0 1px 6px rgba(57,73,76,.35);
+  }
+
+ .Category .category-item:hover {
+    background: rgba(200, 200, 200, 0.5);
+    border-radius:2px; 
+  }
+  
+  #imageProgramer{
+    width: 150px;
+    margin: auto;
+    height: auto;
+    display: block;
+    padding: 30px;  
+  }
+
+  #imageDesigner{
+  width: 140px;
+  margin: auto;
+  height: auto;
+  display: block;
+  padding: 20px;
+  }
+  #imageWrite{
+     width: 140px;
+  margin: auto;
+  height: auto;
+  display: block;
+  padding: 20px;
+  }
+  #imageSales{
+  width: 130px;
+  margin: auto;
+  height: auto;
+  display: block;
+  padding: 20px;
+  }
+  #imageSecretary{
+  width: 150px;
+  margin: auto;
+  height: auto;
+  display: block;
+  padding: 20px;
+  }
+  #imageArchitecture{
+  width: 130px;
+  margin: auto;
+  height: auto;
+  display: block;
+  padding: 20px;
+  }
+  #imageFinance{
+  width: 130px;
+  margin: auto;
+  height: auto;
+  display: block;
+  padding: 20px;
+  }
+  #imageLawyer{
+  width: 130px;
+  margin: auto;
+  height: auto;
+  display: block;
+  padding: 20px;
+  }
+  #imgProgramadores{
+    width: 60px;
+    margin: auto;
+    height: auto;
+    display: block;
+    padding: 20px;
+  }
+  
+  
+  #modalProgramadores{
+    margin-top: 20px;
+    background: #F0F0F0;
+   
+  }
+  
+  
+   */
