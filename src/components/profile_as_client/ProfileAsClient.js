@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import { convertDate, lastSeenConverter } from '../../functions/general';
 import { getStars } from '../../functions/stars';
 import JobHiring from '../job_hiring/JobHiring';
+import JobApplying from '../job_applying/JobApplying';
 // geoplugin.net/json.gp?ip=IP-DE-USUARIO
 
 class ProfileAsClient extends Component {
@@ -27,16 +28,32 @@ class ProfileAsClient extends Component {
     }
 
     componentWillMount() {
-        if (this.props.user) {
-            this.setState({ user: this.props.user });
-        }
-        if (this.props.profile) {
-            this.setState({ profile: this.props.profile });
-            this.setState({ descriptionToEdit: this.props.profile.description });
-            this.setState({ nameToEdit: this.props.profile.displayName });
-        }
+        let uid = sessionStorage.getItem("uid");
+        if (uid !== null && uid !== undefined && !_.isEmpty(uid)) {
+            this.setState({ uid });
 
-        console.log(this.props.user);
+            firebase.database().ref(`users/${uid}`).on('value', (snapshot) => {
+                var profile = snapshot.val();
+                if (profile) {
+                    this.setState({ profile });
+                    let displayName = profile.displayName || null;
+                    displayName = displayName ? `| ${displayName}` : "";
+                    document.title = `NetJob ${displayName}`;
+                }
+            });
+
+        }
+        // if (this.props.user) {
+        //     this.setState({ user: this.props.user });
+        // }
+        // if (this.props.profile) {
+        //     this.setState({ profile: this.props.profile });
+        //     this.setState({ descriptionToEdit: this.props.profile.description });
+        //     this.setState({ nameToEdit: this.props.profile.displayName });
+        // }
+
+        // console.log(this.props.user);
+        // console.log(this.props.profile);
     }
 
     // UNSAFE_componentWillReceiveProps(props) {
@@ -55,7 +72,7 @@ class ProfileAsClient extends Component {
     handleUpdatePhoto = (e) => {
         const file = e.target.files[0];
 
-        var uid = this.state.user.uid;
+        var uid = this.state.user.uid || sessionStorage.getItem("uid");
 
         if (!uid || _.isEmpty(uid) || uid == undefined || uid == 'undefined' || uid == null) {
             return;
@@ -81,7 +98,6 @@ class ProfileAsClient extends Component {
             if (error) { console.log(error) };
         }, () => {
             uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-                console.log(downloadURL);
                 document.getElementById("photoProfile").src = downloadURL;
 
                 var user = firebase.auth().currentUser;
@@ -96,8 +112,8 @@ class ProfileAsClient extends Component {
                         });
 
                 }).catch(error => {
-                    console.log(error);
                     console.log('Ocurrió un error al actualizar su foto de perfil');
+                    console.log(error);
                 });
 
             });
@@ -135,17 +151,16 @@ class ProfileAsClient extends Component {
 
     handleSubmitDescription = () => {
         var description = this.state.descriptionToEdit || "";
-        var uid = this.state.user.uid;
+        var uid = this.state.user.uid || sessionStorage.getItem("uid");
         firebase.database().ref(`users/${uid}`)
             .update({
                 description
             });
-        console.log("Posible Exito");
         this.setState({ editDescription: false });
     }
 
     render() {
-        var user = this.state.user;
+        var user = this.state.profile;
         var profile = this.state.profile;
 
         var freelancer = profile.freelancer || {};
@@ -206,8 +221,17 @@ class ProfileAsClient extends Component {
             ).reverse();
         }
 
+        // var applyingList = this.state.applyingList;
+        var applyingList = profile.applying
+        var applying;
+        if (applyingList) {
+            applying = Object.keys(applyingList).map(job =>
+                <JobApplying key={job} job={job} />
+            ).reverse();
+        }
+
         var range = profile.range || 0;
-        var stars = getStars(range).map((star, i) => 
+        var stars = getStars(range).map((star, i) =>
             <i className="material-icons" key={i}>{star}</i>
         );
 
@@ -255,7 +279,7 @@ class ProfileAsClient extends Component {
                                             </div>
                                             <div className="col-9">
                                                 <span className="country">
-                                                    <a href="#">{country}</a>
+                                                    <a href="https://es.wikipedia.org/wiki/Rep%C3%BAblica_Dominicana">{country}</a>
                                                 </span>
                                             </div>
                                         </div>
@@ -319,6 +343,28 @@ class ProfileAsClient extends Component {
                                         <div className="col-12">
                                             <div className="">
                                                 {jobs}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div className="card">
+                            <div className="card-body">
+                                <div>
+                                    <div className="row feature">
+                                        <div className="col-12">
+                                            <div className="">
+                                                <h2>Trabajos en los que estoy aplicando</h2>
+                                            </div>
+                                            {/* <div className="pr-2">
+                                                <img onClick={() => this.setState({ editDescription: true })} style={{ maxWidth: 37, cursor: 'pointer' }} src="./images/icon_edit.png" className="img-fluid"></img>
+                                            </div> */}
+                                        </div>
+                                        <div className="col-12">
+                                            <div className="">
+                                                {applying}
                                             </div>
                                         </div>
                                     </div>

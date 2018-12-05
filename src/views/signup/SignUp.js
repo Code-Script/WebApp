@@ -139,6 +139,7 @@ class SignUp extends Component {
                                 <div className="flex-sb-m w-full p-b-30">
                                     <div className="contact100-form-checkbox">
                                         <input className="input-checkbox100" id="ckb-signup" type="checkbox" />
+                                        {/* <input type="checkbox" id="ckb-signup" aria-label="Checkbox for following text input"></input> */}
                                         <label className="label-checkbox100" htmlFor="ckb-signup">Al crear tu cuenta, estás aceptando los términos de servicio y la política de privacidad de CodeScript.</label>
                                     </div>
                                     {/* <div>

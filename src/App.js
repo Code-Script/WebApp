@@ -59,19 +59,16 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact strict path='/post'
-              render={() => (
-                sesion ? <PostJob uid={user.uid} /> : <Redirect to="/home" />)} />
+              render={() => (sesion ? <PostJob uid={user.uid} /> : <Redirect to="/home" />)} />
 
             <Route exact strict path='/profile'
               render={() => (sesion ? <Profile user={user} profile={profile} /> : <Redirect to="/home" />)} />
 
             <Route exact strict path='/signin'
-              render={() => (
-                sesion ? <Redirect to="/home" /> : <SignIn />)} />
+              render={() => (sesion ? <Redirect to="/home" /> : <SignIn />)} />
 
             <Route exact strict path='/signup'
-              render={() => (
-                sesion ? <Redirect to="/home" /> : <SignUp />)} />
+              render={() => (sesion ? <Redirect to="/home" /> : <SignUp />)} />
 
             {/* <Route path='/signin' render={() => (<SignIn />)} /> */}
             {/* <Route path='/signup' render={() => (<SignUp />)} /> */}
@@ -80,7 +77,7 @@ class App extends Component {
             <Route path='/sub_categories' render={() => (<SubCategories />)} />
             <Route path='/freelancers' render={() => (<Freelancers />)} />
             <Route path='/jobs' render={() => (<Jobs uid={user.uid} />)} />
-            <Route path='/profile/:id' exact strict component={Profile} />
+            {/* <Route path='/profile/:id' exact strict component={Profile} /> */}
             <Route path='/how_it_works' render={() => (<HowItWorks />)} />
             {/* <Route path='/profile' render={() => (<Profile user={user} profile={profile} />)} /> */}
             {/* <Route path='/post' render={() => (<PostJob uid={user.uid} />)} /> */}

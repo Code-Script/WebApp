@@ -52,7 +52,7 @@ class Home extends Component {
                         </div>{/* /.row */}
 
                         <hr className="featurette-divider" />
-                        <h2>Encuentra los mejores profesionales por sus áreas</h2>
+                        <h2 className="text-center">Encuentra los mejores profesionales por sus áreas</h2>
                         <br /><br />
                         <Category />
 

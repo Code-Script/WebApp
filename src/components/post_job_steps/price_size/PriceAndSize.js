@@ -42,7 +42,6 @@ class PriceAndSize extends Component {
   handlePriceAndSize = () => {
     let price = this.state.price;
     let size = this.state.size;
-    console.log({ price, size });
     // if (_.isEmpty(price) || price === null || _.isEmpty(size) || size === null) {
     //   return;
     // }

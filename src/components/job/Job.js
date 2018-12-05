@@ -15,10 +15,14 @@ class Job extends Component {
             uid: null,
             id: null,
             job: {},
-            user: {}
+            user: {},
+            applyed: false,
+            mine: false
         };
         this.loadUser = this.loadUser.bind(this);
         this.handleApply = this.handleApply.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
+        this.handleOptions = this.handleOptions.bind(this);
     }
 
     componentWillMount() {
@@ -26,6 +30,19 @@ class Job extends Component {
         if (job) {
             this.setState({ job });
             this.loadUser(job.uid);
+
+            let userId = sessionStorage.getItem("uid");
+            var applicants = job.applicants;
+
+            _.mapKeys(applicants, (value, key) => {
+                if(key === userId) {
+                    this.setState({ applyed: true });
+                }
+            });
+
+            if(userId === job.uid) {
+                this.setState({ mine: true });
+            }
         }
 
         var id = this.props.id;
@@ -128,6 +145,104 @@ class Job extends Component {
 
     }
 
+    handleCancel = async () => {
+        swal({
+            title: "Solicitud cancelada",
+            text: "Coming soon...",
+            icon: "success",
+            button: "Aceptar",
+        });
+
+        return;
+
+        var uid = this.state.user.uid,
+            jobId = this.state.id,
+            applicantUid = sessionStorage.getItem("uid");
+
+        if (_.isEmpty(uid) || uid === null) {
+            console.log("NO UID");
+            return;
+        }
+
+        if (_.isEmpty(jobId) || jobId === null) {
+            console.log("NO JOBID");
+            return;
+        }
+
+        if (_.isEmpty(applicantUid) || applicantUid === null || applicantUid === undefined) {
+            console.log("NO APPLICANTUID");
+            return;
+        }
+
+        var timestamp = new Date().getTime();
+        var updates = {};
+        updates[`/jobs/${jobId}/applicants/${applicantUid}`] = { timestamp };
+        updates[`/users/${uid}/postedJobs/${jobId}/applicants/${applicantUid}`] = { timestamp };
+
+        try {
+            await firebase.database().ref().update(updates);
+
+            firebase.database().ref(`/jobs/${jobId}/requests`)
+                .transaction(currentRank => {
+                    if (currentRank) {
+                        currentRank++;
+                    } else {
+                        currentRank = 1;
+                    }
+                    return currentRank;
+                });
+
+            firebase.database().ref(`/users/${uid}/postedJobs/${jobId}/requests`)
+                .transaction(currentRank => {
+                    if (currentRank) {
+                        currentRank++;
+                    } else {
+                        currentRank = 1;
+                    }
+                    return currentRank;
+                });
+
+            firebase.database().ref(`users/${applicantUid}/applying/${jobId}`).update({ timestamp })
+                .catch(error => {
+                    console.log(error);
+                });
+
+            swal({
+                title: "¡Enhorabuena!",
+                text: "Haz aplicado para esta propuesta de trabajo.",
+                icon: "success",
+                button: "Aceptar",
+            })
+                .then(() => {
+                    // window.location.href = "/profile";
+                });
+            return true;
+        }
+
+        catch (error) {
+            console.log(error);
+            swal({
+                title: "¡Atención!",
+                text: msgError(error.code, error.message),
+                icon: "info",
+                button: "Aceptar",
+            });
+            return false;
+        }
+
+    }
+
+    handleOptions = async () => {
+        swal({
+            title: "Opciones de la Solicitud",
+            text: "Coming soon...",
+            icon: "success",
+            button: "Aceptar",
+        });
+
+        return;
+    }
+
     render() {
         var sesion = localStorage.getItem("sesion") === "true" ? true : false;
 
@@ -152,7 +267,17 @@ class Job extends Component {
 
         var buttonApply;
         if (sesion) {
-            buttonApply = <button style={{ width: '100%' }} className="btn btn-danger" onClick={this.handleApply}>SOLICITAR</button>;
+            if (this.state.applyed) {
+                buttonApply = <button style={{ width: '100%' }} className="btn btn-danger" onClick={this.handleCancel}>CANCELAR</button>;
+            } else {
+                if(this.state.mine) {
+                    buttonApply = <button style={{ width: '100%' }} className="btn btn-danger" onClick={this.handleOptions}>OPCIONES</button>;
+                } else {
+                    buttonApply = <button style={{ width: '100%' }} className="btn btn-danger" onClick={this.handleApply}>SOLICITAR</button>;
+                }
+                
+            }
+
             // buttonApply = <button style={{ width: '100%' }} className="btn btn-danger" data-toggle="modal" data-target="#ApplyModal">SOLICITAR</button>;
         } else {
             buttonApply = <button style={{ width: '100%' }} className="btn btn-danger" data-toggle="modal" data-target="#SignUpModal">SOLICITAR</button>;

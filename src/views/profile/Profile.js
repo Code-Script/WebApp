@@ -11,6 +11,7 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            uid: null,
             user: {},
             profile: {},
             currentProfile: 'client'
@@ -18,31 +19,62 @@ class Profile extends Component {
     }
 
     componentWillMount() {
-        let uid = localStorage.getItem("uid");
-        if (!_.isEmpty(uid)) {
-            if (!this.props.user && !this.props.profile) {
-                let uidFromUrl = this.props.match.params.id;
-                if (_.isEqual(uid, uidFromUrl)) {
-                    window.location.href = "/profile";
-                }
-            }
-        }
+        // let uid = sessionStorage.getItem("uid");
+        // console.log(uid);
+        // if (uid !== null && uid !== undefined && !_.isEmpty(uid)) {
+        //     this.setState({ uid });
+
+        //     firebase.database().ref(`users/${uid}`).on('value', (snapshot) => {
+        //         var profile = snapshot.val();
+        //         if (profile) {
+        //             this.setState({ profile });
+        //             let displayName = profile.displayName || '';
+        //             document.title = `NetJob | ${displayName}`;
+        //             console.log(profile);
+        //         }
+        //     });
+
+        // }
+
+        // var profile = this.state.profile;
+        // if (profile) {
+        //     let displayName = profile.displayName || '';
+        //     document.title = `NetJob | ${displayName}`;
+        // }
+
+        // if (!this.props.user && !this.props.profile) {
+        //     console.log(this.props.match.params.id);
+        // }
+
+        // console.log(user);
+        // let uid = localStorage.getItem("uid");
+        // if (!_.isEmpty(uid)) {
+        //     if (!this.props.user && !this.props.profile) {
+        //         let uidFromUrl = this.props.match.params.id;
+        //         if (_.isEqual(uid, uidFromUrl)) {
+        //             window.location.href = "/profile";
+        //         }
+        //     }
+        // }
     }
 
     UNSAFE_componentWillReceiveProps(props) {
-        if (props.user) {
-            this.setState({ user: props.user });
-            let displayName = props.user.displayName || '';
-            document.title = `NetJob | ${displayName}`;
-        }
+        // if (props.user) {
+        //     this.setState({ user: props.user });
+        //     let displayName = props.user.displayName || '';
+        //     document.title = `NetJob | ${displayName}`;
+        // }
 
-        if (props.profile) {
-            this.setState({ profile: props.profile });
-        }
+        // if (props.profile) {
+        //     this.setState({ profile: props.profile });
+        // }
 
-        if (!props.user && !props.profile) {
-            console.log(props.match.params.id);
-        }
+        // if (!props.user && !props.profile) {
+        //     console.log(props.match.params.id);
+        // }
+
+        // console.log(props.user);
+        // console.log(props.profile);
     }
 
     render() {

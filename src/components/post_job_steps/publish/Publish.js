@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Publish.css';
+import firebase from 'firebase';
 
 class Publish extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Publish extends Component {
       file: null
     }
     this.handleSave = this.handleSave.bind(this);
+    this.handleSubmitFile = this.handleSubmitFile.bind(this);
   }
 
   componentWillMount() {
@@ -23,7 +25,51 @@ class Publish extends Component {
   }
 
   handleSave = () => {
-    this.props.submit();
+    // this.props.submit(this.state.file);
+    var file = this.state.file;
+    var newPostKey = firebase.database().ref().child('jobs').push().key;
+    if(file) {
+      this.handleSubmitFile(newPostKey, file);
+    } else {
+      this.props.submit(newPostKey);
+    }
+    
+  }
+
+  handleSubmitFile = (newPostKey, file) => {
+    var metadata = {
+      lastModified: file.lastModified,
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      webkitRelativePath: file.webkitRelativePath
+    };
+
+    var storageRef = firebase.storage().ref();
+    var uploadTask = storageRef.child(`documents/${newPostKey}/${file.name}`).put(file, metadata);
+
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, snapshot => {
+      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('Upload is ' + progress + '% done');
+      switch (snapshot.state) {
+        case firebase.storage.TaskState.PAUSED:
+          console.log('Upload is paused');
+          break;
+        case firebase.storage.TaskState.RUNNING:
+          console.log('Upload is running');
+          break;
+        default:
+          break;
+      }
+    }, error => {
+      if (error) { console.log(error) };
+    }, () => {
+      uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+        this.props.submit(newPostKey, downloadURL);
+        // return downloadURL;
+      });
+    });
+    //   this.handleUploadImage(e);
   }
 
   render() {
@@ -32,7 +78,7 @@ class Publish extends Component {
     //   buttonNextClasses = "disabled";
     // }
     // var buttonNextClasses = this.state.name === null ? "disabled" : "";
-    var steps = this.state.steps; 
+    var steps = this.state.steps;
 
     var file = this.state.file;
 
@@ -50,8 +96,8 @@ class Publish extends Component {
           <div className="col-md-12" style={{ minHeight: "150px" }}>
             {/* <input type="text" style={{padding: "22px"}} className="col-12 form-control" placeholder="Por ejemplo: Diseño de un logo" onChange={e => this.setState({ name: e.target.value })} value={this.state.name || ""} /> */}
             <div className="row">
-              <div className="col-12"> 
-                <input onChange={e => {this.setState({ file: e.target.files[0]})}} className="file-input" type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf" />
+              <div className="col-12">
+                <input onChange={e => { this.setState({ file: e.target.files[0] }) }} className="file-input" type="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf" />
                 {file !== null ? <p className="m-2">Nombre del archivo: <span>{file.name}</span></p> : ""}
               </div>
             </div>

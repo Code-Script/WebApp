@@ -7,3 +7,21 @@
         padding-right: 3rem;
     }
 }
+
+.Header .header-button-profile button {
+    border-color: transparent;
+    color: rgba(220, 220, 220, 0.9);
+    border-style: none;
+}
+
+.Header .header-button-profile button:hover {
+    background-color: transparent;
+    color: rgb(245, 245, 245);
+    border-color: transparent;
+}
+
+.Header .header-button-profile button:focus {
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    border-color: transparent;
+}

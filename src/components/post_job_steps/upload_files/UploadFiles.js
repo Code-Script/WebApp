@@ -17,6 +17,9 @@ class UploadFiles extends Component {
     }
 
     handleSubmitFile = (e) => {
+        console.log('Subir');
+        return;
+        
         const file = e.target.files[0];
 
         var uid = this.state.user.uid;

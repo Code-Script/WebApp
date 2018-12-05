@@ -6,7 +6,7 @@
     /* background-color: transparent; */
     /* border: 1px solid transparent; */
     color: #000;
-    content: "Subir archivo";
+    content: "";
     /* content: "\f574"; */
     /* display: inline-block; */
     /* padding: 5px 54px 0; */
@@ -24,6 +24,10 @@
     font-weight: normal;
     text-decoration: inherit;
 
+    background-image: url('https://png.pngtree.com/svg/20170427/cloud_upload_163100.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 
     display: block;
     width: 150px;

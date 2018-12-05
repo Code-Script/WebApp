@@ -35,6 +35,7 @@ firebase.auth().onAuthStateChanged((user) => {
         //     });
         sessionStorage.setItem("uid", "");
         localStorage.setItem("sesion", 'false');
+        document.title = 'NetJob';
 
         ReactDOM.render(<App />, document.getElementById('root'));
 
