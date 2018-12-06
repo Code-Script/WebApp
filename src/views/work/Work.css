@@ -77,13 +77,13 @@
 
  */
 
- .ProfileAsClient .file-input {
+ .Work .file-input {
     visibility: hidden;
     /* width: 20px; */
     /* margin: 0 auto; */
 }
 
-.ProfileAsClient .file-input::before {
+.Work .file-input::before {
     background-color: transparent;
     border: 1px solid transparent;
     content: "Editar foto";
@@ -98,29 +98,29 @@
     color: #1d84b5;
 }
 
-.ProfileAsClient .h1 {
+.Work .h1 {
     color: #4a4a4a;
     font-size: 35px;
     text-align: left;
     margin-bottom: 0px;
 }
 
-.ProfileAsClient .feature {
+.Work .feature {
     text-align: left;
     padding: 10px;
     padding-right: 0px;
 }
 
-.ProfileAsClient .feature h2 {
+.Work .feature h2 {
     font-size: 28px;
     margin-bottom: 9px;
 }
 
-.ProfileAsClient .feature .about-me {
+.Work .feature .about-me {
     font-size: 16px;
 }
 
-.ProfileAsClient .profile-photo img {
+.Work .profile-photo img {
     border-radius: 50%;
     height: auto;
     /* width: 100%; */
@@ -130,7 +130,7 @@
     border: 0;
 }
 
-.ProfileAsClient .profile-photo .profile-photo .edit-btn {
+.Work .profile-photo .profile-photo .edit-btn {
     /* position: absolute;
     top: 50%;
     left: 50%;
@@ -143,44 +143,44 @@
     cursor: pointer;
 }
 
-.ProfileAsClient .nav-item .nav-link {
+.Work .nav-item .nav-link {
     color: #6f6f6f;
     cursor: pointer;
 }
 
-.ProfileAsClient .nav-item .active {
+.Work .nav-item .active {
     color: #007bff;
 }
 
 
-.ProfileAsClient img {
+.Work img {
     margin-right: 50%;
 }
 
-.ProfileAsClient .cardtwo {
+.Work .cardtwo {
     background-color: #15A2CF;
 }
 
-.ProfileAsClient #Pe {
+.Work #Pe {
     float: right;
 }
 
-.ProfileAsClient #izq {
+.Work #izq {
     float: right;
 }
 
-.ProfileAsClient #izq1 {
+.Work #izq1 {
     float: right;
     margin-bottom: 3%;
 }
 
-.ProfileAsClient #der {
+.Work #der {
     float: left;
 }
 
 /* The switch - the box around the slider */
 
-.ProfileAsClient .switch {
+.Work .switch {
     position: relative;
     display: inline-block;
     width: 60px;
@@ -189,7 +189,7 @@
 
 /* Hide default HTML checkbox */
 
-.ProfileAsClient .switch input {
+.Work .switch input {
     opacity: 0;
     width: 0;
     height: 0;
@@ -197,7 +197,7 @@
 
 /* The slider */
 
-.ProfileAsClient .slider {
+.Work .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -209,7 +209,7 @@
     transition: .4s;
 }
 
-.ProfileAsClient .slider:before {
+.Work .slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -221,15 +221,15 @@
     transition: .4s;
 }
 
-.ProfileAsClient input:checked+.slider {
+.Work input:checked+.slider {
     background-color: #2196F3;
 }
 
-.ProfileAsClient input:focus+.slider {
+.Work input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
 }
 
-.ProfileAsClient input:checked+.slider:before {
+.Work input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
@@ -237,16 +237,16 @@
 
 /* Rounded sliders */
 
-.ProfileAsClient .slider.round {
+.Work .slider.round {
     border-radius: 34px;
 }
 
-.ProfileAsClient .slider.round:before {
+.Work .slider.round:before {
     border-radius: 50%;
 }
 
 @media (max-width: 767px){
-    .ProfileAsClient .profile-photo img {
+    .Work .profile-photo img {
         max-width: 90px;
         width: 100%;
         height: 90px;

@@ -35,12 +35,12 @@ class Job extends Component {
             var applicants = job.applicants;
 
             _.mapKeys(applicants, (value, key) => {
-                if(key === userId) {
+                if (key === userId) {
                     this.setState({ applyed: true });
                 }
             });
 
-            if(userId === job.uid) {
+            if (userId === job.uid) {
                 this.setState({ mine: true });
             }
         }
@@ -254,7 +254,7 @@ class Job extends Component {
             size = job.size || "No especificado.",
             description = job.description || "",
             uid = job.uid || "",
-            state = job.state,
+            state = job.state || "Evaluando propuestas",
             creationTime = job.creationTime || null,
             requests = job.requests || 0,
             length = job.length || "No especificado";
@@ -270,12 +270,12 @@ class Job extends Component {
             if (this.state.applyed) {
                 buttonApply = <button style={{ width: '100%' }} className="btn btn-danger" onClick={this.handleCancel}>CANCELAR</button>;
             } else {
-                if(this.state.mine) {
+                if (this.state.mine) {
                     buttonApply = <button style={{ width: '100%' }} className="btn btn-danger" onClick={this.handleOptions}>OPCIONES</button>;
                 } else {
                     buttonApply = <button style={{ width: '100%' }} className="btn btn-danger" onClick={this.handleApply}>SOLICITAR</button>;
                 }
-                
+
             }
 
             // buttonApply = <button style={{ width: '100%' }} className="btn btn-danger" data-toggle="modal" data-target="#ApplyModal">SOLICITAR</button>;
@@ -292,8 +292,8 @@ class Job extends Component {
                                 <div className="col-lg-12">
                                     <div className="row">
                                         <div className="col-12">
-                                            <strong style={{ fontSize: '1.15em' }} className="text-dark ml-0 mr-0 mb-0 mt-0">{name}</strong>
-                                            <p className="text-dark">Publicado: <span className="text-secondary">{postedTime}</span></p>
+                                            <strong style={{ fontSize: '1.15em' }} className="text-dark ml-0 mr-0 mb-0 mt-0"><a style={{ textDecoration: 'none' }} href={`work/${this.props.id}`}>{name}</a></strong>
+                                            <p className="text-dark">Publicado: <span className="text-secondary">{postedTime}.</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -304,11 +304,12 @@ class Job extends Component {
                                     </p>}
                                     <div className="mt-3">
                                         <p style={{ fontSize: '1em', margin: 0 }} className="text-dark">Categoría:
-                                            <span className="text-muted"> {category}</span>
+                                            <span className="text-muted"> {category}.</span>
                                         </p>
                                         {_.isEmpty(subCategory) ? "" : <p style={{ fontSize: '1em', margin: 0 }} className="text-dark">SubCategoría:
                                             <span className="text-muted"> {subCategory}</span> </p>}
-                                        <p style={{ fontSize: '1em', margin: 0 }} className="text-dark">Alcance: <span className="text-muted"> {size}</span> </p>
+                                        <p style={{ fontSize: '1em', margin: 0 }} className="text-dark">Alcance: <span className="text-muted"> {size}.</span> </p>
+                                        <p style={{ fontSize: '1em', margin: 0 }} className="text-dark">Estado: <span className="text-muted"> {state}.</span> </p>
                                     </div>
                                 </div>
                                 <div className="col-lg-12 my-4">

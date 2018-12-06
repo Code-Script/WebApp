@@ -17,7 +17,7 @@ class JobHiring extends Component {
         //     this.setState({ job: this.props.job });
         //     console.log(this.props.job);
         // }
-        console.log('componentWillReceiveProps');
+        // console.log('componentWillReceiveProps');
     }
 
     componentWillMount() {
@@ -34,10 +34,10 @@ class JobHiring extends Component {
                 <div className="d-flex justify-content-between">
                     <div className="d-flex justify-content-between">
                         <div className="">
-                            <h5>{job.name}</h5>
-                            <p>Publicado: <span>{_.toLower(lastSeenConverter(job.creationTime))}</span></p>
-                            <p>Propuestas: <span>{job.offersCount || 0}</span></p>
-                            <p>Estado: <span>{job.state || "Evaluando"}</span></p>
+                            <h5><a style={{ textDecoration: 'none' }} href={`work/${this.props.id}`}>{job.name}</a></h5>
+                            <p>Publicado: <span>{_.toLower(lastSeenConverter(job.creationTime))}.</span></p>
+                            <p>Propuestas: <span>{job.requests || 0}.</span></p>
+                            <p>Estado: <span>{job.state || "Evaluando propuestas"}.</span></p>
                         </div>
                     </div>
                     <div className="options">
@@ -46,12 +46,11 @@ class JobHiring extends Component {
                         </span> */}
                         <div className="dropdown">
                             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown button
+                                
                             </button>
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#">Action</a>
-                                <a className="dropdown-item" href="#">Another action</a>
-                                <a className="dropdown-item" href="#">Something else here</a>
+                                <a className="dropdown-item" href="#">Editar</a>
+                                <a className="dropdown-item" href="#">Cancelar</a>
                             </div>
                         </div>
                     </div>

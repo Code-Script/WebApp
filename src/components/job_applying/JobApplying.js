@@ -18,7 +18,7 @@ class JobApplying extends Component {
         if (jobId) {
             firebase.database().ref(`jobs/${jobId}`).on('value', snapshot => {
                 var job = snapshot.val();
-                if(job) {
+                if (job) {
                     this.setState({ job });
                 }
             });
@@ -33,16 +33,25 @@ class JobApplying extends Component {
                 <div className="d-flex justify-content-between">
                     <div className="d-flex justify-content-between">
                         <div className="">
-                            <h5>{job.name}</h5>
-                            <p>Publicado: <span>{_.toLower(lastSeenConverter(job.creationTime))}</span></p>
-                            <p>Propuestas: <span>{job.offersCount || 0}</span></p>
-                            <p>Estado: <span>{job.state || "Evaluando"}</span></p>
+                            <h5><a style={{ textDecoration: 'none' }} href={`work/${this.props.job}`}>{job.name}</a></h5>
+                            <p>Publicado: <span>{_.toLower(lastSeenConverter(job.creationTime))}.</span></p>
+                            <p>Propuestas: <span>{job.requests || 0}.</span></p>
+                            <p>Estado: <span>{job.state || "Evaluando propuestas"}.</span></p>
                         </div>
                     </div>
                     <div className="options">
-                        <span data-content="Right?" data-toggle="popover" data-trigger="focus" title="Opciones" data-container="body" data-placement="bottom">
+                        {/* <span data-content="Right?" data-toggle="popover" data-trigger="focus" title="Opciones" data-container="body" data-placement="bottom">
                             <i className="fas fa-ellipsis-v"></i>
-                        </span>
+                        </span> */}
+                        <div className="dropdown">
+                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" href="#">Ver</a>
+                                <a className="dropdown-item" href="#">Cancelar</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <hr />

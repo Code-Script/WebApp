@@ -17,9 +17,11 @@ class ProfileAsClient extends Component {
             editDescription: false,
             descriptionToEdit: "",
             nameToEdit: "",
+            sloganToEdit: "",
             user: {},
             profile: {
-                description: ""
+                description: "",
+                slogan: ""
             }
         };
         this.handleUpdatePhoto = this.handleUpdatePhoto.bind(this);
@@ -39,6 +41,10 @@ class ProfileAsClient extends Component {
                     let displayName = profile.displayName || null;
                     displayName = displayName ? `| ${displayName}` : "";
                     document.title = `NetJob ${displayName}`;
+
+                    this.setState({ nameToEdit: profile.displayName });
+                    this.setState({ descriptionToEdit: profile.description });
+                    this.setState({ sloganToEdit: profile.slogan });
                 }
             });
 
@@ -123,6 +129,8 @@ class ProfileAsClient extends Component {
 
     handleSubmitDisplayName = () => {
         var displayName = this.state.nameToEdit || "";
+        var slogan = this.state.sloganToEdit || null;
+
         if (_.isEmpty(displayName)) {
             swal({
                 title: "¡Error!",
@@ -136,15 +144,24 @@ class ProfileAsClient extends Component {
         var user = firebase.auth().currentUser;
 
         if (user) {
-            user.updateProfile({
-                displayName
-            })
-                .then(() => {
-                    firebase.database().ref(`users/${user.uid}`)
-                        .update({
-                            displayName
-                        });
-                });
+            if (displayName !== this.state.profile.displayName) {
+                user.updateProfile({
+                    displayName
+                })
+                    .then(() => {
+                        firebase.database().ref(`users/${user.uid}`)
+                            .update({
+                                displayName
+                            });
+                    });
+            }
+
+            if (slogan && slogan !== this.state.profile.slogan) {
+                firebase.database().ref(`users/${user.uid}`)
+                    .update({
+                        slogan
+                    });
+            }
             this.setState({ editGeneral: false });
         }
     }
@@ -166,6 +183,7 @@ class ProfileAsClient extends Component {
         var freelancer = profile.freelancer || {};
 
         var displayName = user.displayName || <br />;
+        var slogan = user.slogan || "¿Con qué frase o eslogan te identificas?";
         var price = freelancer.price || 0.00;
         var score = freelancer.score || 0;
         var finished = freelancer.finished || 0;
@@ -199,13 +217,19 @@ class ProfileAsClient extends Component {
 
         var name;
         if (this.state.editGeneral === false) {
-            name = <div className="h1">
-                {displayName}
+            name = <div>
+                <div className="h1">
+                    {displayName}
+                </div>
+                <h5 className="mb-2 text-muted">
+                    {slogan}
+                </h5>
             </div>;
         } else {
             name =
                 <div style={{ width: 415 }}>
-                    <input type="text" className="form-control" onChange={e => this.setState({ nameToEdit: e.target.value })} value={this.state.nameToEdit || ""}></input>
+                    <input type="text" className="form-control mb-1" onChange={e => this.setState({ nameToEdit: e.target.value })} value={this.state.nameToEdit || ""} placeholder="Escribe tu nombre o el de tu organización"></input>
+                    <input type="text" className="form-control" onChange={e => this.setState({ sloganToEdit: e.target.value })} value={this.state.sloganToEdit || ""} placeholder="¿Con qué frase o eslogan te identificas?"></input>
                     <div className="mt-2">
                         <button className="btn btn-primary mr-2" onClick={this.handleSubmitDisplayName}>Guardar</button>
                         <button className="btn btn-danger" onClick={() => { this.setState({ editGeneral: false }); this.setState({ nameToEdit: displayName }); }}>Cancelar</button>
@@ -217,7 +241,7 @@ class ProfileAsClient extends Component {
         var jobs;
         if (jobList) {
             jobs = Object.keys(jobList).map(job =>
-                <JobHiring key={job} job={jobList[job]} />
+                <JobHiring key={job} job={jobList[job]} id={job} />
             ).reverse();
         }
 
