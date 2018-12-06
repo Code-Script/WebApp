@@ -10,8 +10,10 @@ class JobApplicants extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}
+            user: {}, 
+            job: {}
         };
+        this.handleHire = this.handleHire.bind(this);
     }
 
     componentWillMount() {
@@ -24,10 +26,68 @@ class JobApplicants extends Component {
                 }
             });
         }
+        let job = this.props.job;
+        if(job) {
+            this.setState({ job });
+        }
+    }
+
+    handleHire = async () => {
+        var uid = this.state.user.uid;
+        var jobId = this.props.id;
+        var job = this.state.job;
+        var buttonHire = document.getElementById("hireUser");
+
+        if(job.hiredUser !== null && !_.isEmpty(job.hiredUser)) {
+            if (buttonHire) {
+                buttonHire.classList.add("disabled");
+            }
+            return;
+        }
+
+        if (_.isEmpty(uid) || uid === null) {
+            console.log("NO UID");
+            return;
+        }
+
+        if (_.isEmpty(jobId) || jobId === null) {
+            console.log("NO JOBID");
+            return;
+        }
+
+        if (buttonHire) {
+            buttonHire.classList.add("disabled");
+        }
+
+        var updates = {};
+        updates[`jobs/${jobId}/hiredUser/`] = uid;
+        updates[`jobs/${jobId}/state/`] = 'Freelancer contratado';
+        updates[`users/${this.state.job.uid}/postedJobs/${jobId}/hiredUser/`] = uid;
+        updates[`users/${this.state.job.uid}/postedJobs/${jobId}/state/`] = 'Freelancer contratado';
+
+        try {
+            await firebase.database().ref().update(updates);
+            swal({
+                title: "¡Contratación exitosa!",
+                text: "La contratación ha sido realiza exitosamente.",
+                icon: "success",
+                button: "Aceptar",
+              });
+            return true;
+        }
+        catch (error) {
+            console.log(error);
+            if (buttonHire) {
+                buttonHire.classList.remove("disabled");
+              }
+            return false;
+        }
     }
 
     render() {
         var currentUserId = sessionStorage.getItem("uid");
+        var job = this.props.job;
+        var buttonHire = document.getElementById("hireUser");
 
         var user = this.state.user;
         var profile = this.state.user;
@@ -58,6 +118,12 @@ class JobApplicants extends Component {
         var stars = getStars(range).map((star, i) =>
             <i className="material-icons" key={i}>{star}</i>
         );
+
+        if(job.hiredUser !== null && !_.isEmpty(job.hiredUser)) {
+            if (buttonHire) {
+                buttonHire.classList.add("disabled");
+            }
+        }
 
         return (
             <div className="JobApplicants p-2">
@@ -127,7 +193,7 @@ class JobApplicants extends Component {
                             {currentUserId === uid ? "" :
                                 <div className="row text-left pt-1">
                                     <div className="col-8">
-                                        <button style={{ width: '49%' }} className="btn btn-success mr-1 m" onClick={this.handleAccept}>CONTRATAR</button>
+                                        <button style={{ width: '49%' }} className="btn btn-success mr-1 m" id="hireUser" onClick={this.handleHire}>CONTRATAR</button>
                                         <button style={{ width: '49%' }} className="btn btn-info" onClick={this.handleSendMessage}>ENVIAR MENSAJE</button>
                                     </div>
                                 </div>

@@ -27,6 +27,7 @@ class Work extends Component {
         var id = this.props.match.params.id;
         console.log(id);
         if (id) {
+            this.setState({ id });
             firebase.database().ref(`jobs/${id}`).on('value', snapshot => {
                 var job = snapshot.val();
                 if (job) {
@@ -43,7 +44,7 @@ class Work extends Component {
                     if (userId === job.uid) {
                         this.setState({ mine: true });
                     }
-                    
+
                     firebase.database().ref(`users/${job.uid}`).on('value', snapshot => {
                         var user = snapshot.val();
                         if (user) {
@@ -144,7 +145,7 @@ class Work extends Component {
         var applicants;
         if (applicantList) {
             applicants = Object.keys(applicantList).map(user =>
-                <JobApplicants key={user} user={user} />
+                <JobApplicants key={user} user={user} id={this.state.id} job={job} />
             ).reverse();
         }
 

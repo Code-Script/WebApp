@@ -164,7 +164,7 @@ class PostJob extends Component {
         .then(() => {
           window.location.href = "/profile";
         });
-      // return true;
+      return true;
     }
 
     catch (error) {
