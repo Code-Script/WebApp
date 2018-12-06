@@ -13,7 +13,7 @@ class Job extends Component {
         super(props);
         this.state = {
             uid: null,
-            id: null,
+            id: "",
             job: {},
             user: {},
             applyed: false,
@@ -278,21 +278,21 @@ class Job extends Component {
         var buttonApply;
         if (sesion) {
             if (this.state.applyed) {
-                buttonApply = <button style={{ width: '100%' }} id="btnApply" className="btn btn-danger" onClick={this.handleCancel}>CANCELAR</button>;
+                buttonApply = <button style={{ width: '100%' }} id={`btnApply${this.state.id}`} className="btn btn-danger" onClick={this.handleCancel}>CANCELAR</button>;
             } else {
                 if (this.state.mine) {
-                    buttonApply = <button style={{ width: '100%' }} id="btnApply" className="btn btn-danger" onClick={this.handleOptions}>OPCIONES</button>;
+                    buttonApply = <button style={{ width: '100%' }} id={`btnApply${this.state.id}`} className="btn btn-danger" onClick={this.handleOptions}>OPCIONES</button>;
                 } else {
-                    buttonApply = <button style={{ width: '100%' }} id="btnApply" className="btn btn-danger" onClick={this.handleApply}>SOLICITAR</button>;
+                    buttonApply = <button style={{ width: '100%' }} id={`btnApply${this.state.id}`} className="btn btn-danger" onClick={this.handleApply}>SOLICITAR</button>;
                 }
 
             }
         } else {
-            buttonApply = <button style={{ width: '100%' }} id="btnApply" className="btn btn-danger" data-toggle="modal" data-target="#SignUpModal">SOLICITAR</button>;
+            buttonApply = <button style={{ width: '100%' }} id={`btnApply${this.state.id}`} className="btn btn-danger" data-toggle="modal" data-target="#SignUpModal">SOLICITAR</button>;
         }
 
         if (job.hiredUser !== null && !_.isEmpty(job.hiredUser)) {
-            var btnApply = document.getElementById("btnApply");
+            var btnApply = document.getElementById(`btnApply${this.state.id}`);
             if (btnApply) {
                 btnApply.classList.add("disabled");
             }
