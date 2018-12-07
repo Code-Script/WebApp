@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import './Freelancer.css';
 import swal from 'sweetalert';
 import _ from 'lodash';
+import firebase from 'firebase';
 import HireModal from '../hire_modal/HireModal';
 import { convertDate, lastSeenConverter } from '../../functions/general';
 import { getStars } from '../../functions/stars';
+window.$ = window.jQuery = require('jquery');
 
 class Freelancer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}
+            user: {},
+            currentUserId: null,
+            currentUser: null,
+            currentUserPosts: {}
         };
     }
 
@@ -19,6 +24,33 @@ class Freelancer extends Component {
         if (user) {
             this.setState({ user });
         }
+
+        var currentUserId = sessionStorage.getItem("uid");
+        if (currentUserId) {
+            this.setState({ currentUserId });
+            firebase.database().ref(`users/${currentUserId}/postedJobs`).on('value', snapshot => {
+                var currentUserPosts = snapshot.val();
+                if (currentUserPosts) {
+                    this.setState({ currentUserPosts }); 
+                }
+            });
+        }
+
+    }
+
+    handleHire = () => {
+        // data-toggle="modal" data-target="#HireModal"
+        var jobs = this.state.currentUserPosts || null;
+        if(_.isEmpty(jobs) || jobs === null || jobs === {}) {
+            swal({
+                title: "No tienes propuestas activas",
+                text: "Para contratar a este freelancer debe tener al menos un trabajo publicado.",
+                icon: "info",
+                button: "Aceptar",
+            })
+            return;
+        }
+        window.$('#HireModal').modal('show');
     }
 
     render() {
@@ -109,7 +141,7 @@ class Freelancer extends Component {
                             </div>
                             <div className="col-lg-4">
                                 <div className="col-sm-12" style={{ textAlign: 'center' }}>
-                                    <button style={{ width: '100%' }} className="btn btn-danger" data-toggle="modal" data-target="#HireModal">CONTRATAR</button>
+                                    <button style={{ width: '100%' }} className="btn btn-danger" onClick={this.handleHire}>CONTRATAR</button>
                                 </div>
                                 <div className="col-sm-12" style={{ marginTop: 5 }}>
                                     <p style={{ margin: 0 }} className="text-dark">Por hora:</p>
@@ -122,7 +154,7 @@ class Freelancer extends Component {
                         </div>
                     </div>
                 </div>
-                <HireModal uid={user.uid} />
+                <HireModal user={user} jobs={this.state.currentUserPosts} />
             </div>
 
         );

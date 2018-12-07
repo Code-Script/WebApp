@@ -28,10 +28,13 @@ class Freelancers extends Component {
     render() {
         var userList = this.state.users;
         var users;
+        var currentUserId = sessionStorage.getItem("uid");
 
         if (userList) {
             users = Object.keys(userList).map(user =>
-                <Freelancer key={user} user={userList[user]} />
+                 user === currentUserId ? "" :
+                    <Freelancer key={user} user={userList[user]} />
+                
             ).reverse();
         }
 
