@@ -156,18 +156,19 @@ class Job extends Component {
     }
 
     handleCancel = async () => {
-        swal({
-            title: "Solicitud cancelada",
-            text: "Coming soon...",
-            icon: "success",
-            button: "Aceptar",
-        });
-
-        return;
-
         var uid = this.state.user.uid,
             jobId = this.state.id,
             applicantUid = sessionStorage.getItem("uid");
+
+        var job = this.state.job;
+
+        // if (job.hiredUser !== null && !_.isEmpty(job.hiredUser)) {
+        //     var btnApply = document.getElementById("btnApply");
+        //     if (btnApply) {
+        //         btnApply.classList.add("disabled");
+        //     }
+        //     return;
+        // }
 
         if (_.isEmpty(uid) || uid === null) {
             console.log("NO UID");
@@ -184,10 +185,10 @@ class Job extends Component {
             return;
         }
 
-        var timestamp = new Date().getTime();
+        // var timestamp = new Date().getTime();
         var updates = {};
-        updates[`/jobs/${jobId}/applicants/${applicantUid}`] = { timestamp };
-        updates[`/users/${uid}/postedJobs/${jobId}/applicants/${applicantUid}`] = { timestamp };
+        updates[`/jobs/${jobId}/applicants/${applicantUid}`] = null;
+        updates[`/users/${uid}/postedJobs/${jobId}/applicants/${applicantUid}`] = null;
 
         try {
             await firebase.database().ref().update(updates);
@@ -195,9 +196,9 @@ class Job extends Component {
             firebase.database().ref(`/jobs/${jobId}/requests`)
                 .transaction(currentRank => {
                     if (currentRank) {
-                        currentRank++;
+                        currentRank--;
                     } else {
-                        currentRank = 1;
+                        currentRank = 0;
                     }
                     return currentRank;
                 });
@@ -205,21 +206,22 @@ class Job extends Component {
             firebase.database().ref(`/users/${uid}/postedJobs/${jobId}/requests`)
                 .transaction(currentRank => {
                     if (currentRank) {
-                        currentRank++;
+                        currentRank--;
                     } else {
-                        currentRank = 1;
+                        currentRank = 0;
                     }
                     return currentRank;
                 });
 
-            firebase.database().ref(`users/${applicantUid}/applying/${jobId}`).update({ timestamp })
+            firebase.database().ref(`users/${applicantUid}/applying/`).update({ jobId: null })
                 .catch(error => {
                     console.log(error);
                 });
 
+            this.setState({ applyed: false });
             swal({
                 title: "¡Enhorabuena!",
-                text: "Haz aplicado para esta propuesta de trabajo.",
+                text: "La propuesta de trabajo se ha cancelado correctamente.",
                 icon: "success",
                 button: "Aceptar",
             })

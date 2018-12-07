@@ -14,6 +14,7 @@ import Profile from './views/profile/Profile';
 import PostJob from './views/post_job/PostJob';
 import HowItWorks from './views/how_it_works/HowItWorks';
 import Work from './views/work/Work';
+import User from './views/user/User';
 
 class App extends Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class App extends Component {
             <Route path='/sub_categories' render={() => (<SubCategories />)} />
             <Route path='/freelancers' render={() => (<Freelancers />)} />
             <Route path='/jobs' render={() => (<Jobs uid={user.uid} />)} />
-            {/* <Route path='/profile/:id' exact strict component={Profile} /> */}
+            <Route path='/profile/:id' exact strict component={User} />
             <Route path='/how_it_works' render={() => (<HowItWorks />)} />
             {/* <Route path='/profile' render={() => (<Profile user={user} profile={profile} />)} /> */}
             {/* <Route path='/post' render={() => (<PostJob uid={user.uid} />)} /> */}
