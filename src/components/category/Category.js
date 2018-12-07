@@ -24,7 +24,7 @@ class Category extends Component {
     }
 
     handleSeeAllCategories = () => {
-        window.location.href = "/categories";
+        window.location.href = "/freelancers";
     }
 
     handleRedirectToCategory = (e) => {
@@ -133,7 +133,7 @@ class Category extends Component {
                     {postJob === true ?
                         "" :
                         <div className="buttonSkills">
-                            <center><button type="button" onClick={this.handleSeeAllCategories} className="btn btn-outline-primary col-md-2">Todas las categorías</button></center>
+                            <center><button type="button" onClick={this.handleSeeAllCategories} className="btn btn-outline-primary col-md-2">Todos los Freelancers</button></center>
                         </div>
                     }
 

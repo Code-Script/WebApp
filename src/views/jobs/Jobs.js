@@ -13,8 +13,42 @@ class Jobs extends Component {
         super(props);
         this.state = {
             uid: null,
-            jobs: null
+            jobs: null,
+            searchResult: null
         };
+        this.handleSearch = this.handleSearch.bind(this);
+    }
+
+    handleSearch = () => {
+        var search = document.querySelector("#search-input-2");
+        if(!search) {
+            this.setState({ searchResult: null });
+            return;
+        }
+
+        search = _.trim(search.value);
+        if(_.isEmpty(search)) {
+            this.setState({ searchResult: null });
+            return;
+        }
+
+        var searchResult = [];
+
+        var jobs = this.state.jobs;
+        for (let job in jobs) {
+            if (_.toLower(jobs[job].name).search(_.toLower(search)) !== -1) {
+                searchResult.push(jobs[job]);
+            }
+        }
+
+        if (Object.entries(searchResult).length > 0) {
+            
+            console.log(searchResult);
+        } else {
+            searchResult = null;
+        }
+
+        this.setState({ searchResult });
     }
 
     componentWillMount() {
@@ -33,7 +67,8 @@ class Jobs extends Component {
     }
 
     render() {
-        var jobList = this.state.jobs;
+        var result = this.state.searchResult;
+        var jobList = result || this.state.jobs;
         var jobs;
         var uid = this.state.uid;
 
@@ -55,9 +90,9 @@ class Jobs extends Component {
                                         <option>Trabajos</option>
                                     </select>
                                 </div>
-                                <form style={{ padding: 0 }} className="form-inline col-sm my-2 my-lg-0">
-                                    <input style={{ borderRadius: 0, border: 0, width: '85%' }} className="form-control mr-sm-0" type="search" placeholder="Buscar" aria-label="Buscar" />
-                                    <button className="btn btn-success my-2 my-sm-0" type="submit" style={{ borderRadius: 0, width: '15%' }}>Search</button>
+                                <form style={{ padding: 0 }} onSubmit={e => e.preventDefault()} className="form-inline col-sm my-2 my-lg-0">
+                                    <input id="search-input-2" style={{ borderRadius: 0, border: 0, width: '85%' }} className="form-control mr-sm-0" type="search" placeholder="Buscar" aria-label="Buscar" onChange={this.handleSearch} />
+                                    <button onClick={this.handleSearch} className="btn btn-success my-2 my-sm-0" type="button" style={{ borderRadius: 0, width: '15%' }}>Buscar</button>
                                 </form>
                             </div>
                             <main className="row my-lg-4">
@@ -69,7 +104,7 @@ class Jobs extends Component {
                                         <div className="collapse navbar-collapse col-lg-block" id="leftSideFilters"> */}
                                             <label htmlFor="select-acti-pro">Actividad profesional</label>
                                             <select id="select-acti-pro" className="custom-select">
-                                                <option>Todas las profesiones</option>
+                                                <option>Todas las categorías</option>
                                             </select>
                                             <label htmlFor="select-skills">Habilidades</label>
                                             <select id="select-skills" className="custom-select" multiple>

@@ -11,8 +11,10 @@ class Freelancers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: null
+            users: null,
+            searchResult: null
         };
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     componentWillMount() {
@@ -25,8 +27,41 @@ class Freelancers extends Component {
             });
     }
 
+    handleSearch = () => {
+        var search = document.querySelector("#search-input");
+        if(!search) {
+            this.setState({ searchResult: null });
+            return;
+        }
+
+        search = _.trim(search.value);
+        if(_.isEmpty(search)) {
+            this.setState({ searchResult: null });
+            return;
+        }
+
+        var searchResult = [];
+
+        var users = this.state.users;
+        for (let user in users) {
+            if (_.toLower(users[user].displayName).search(_.toLower(search)) !== -1) {
+                searchResult.push(users[user]);
+            }
+        }
+
+        if (Object.entries(searchResult).length > 0) {
+            
+            console.log(searchResult);
+        } else {
+            searchResult = null;
+        }
+
+        this.setState({ searchResult });
+    }
+
     render() {
-        var userList = this.state.users;
+        var result = this.state.searchResult;
+        var userList = result || this.state.users;
         var users;
         var currentUserId = sessionStorage.getItem("uid");
 
@@ -50,9 +85,9 @@ class Freelancers extends Component {
                                         <option>Freelancers</option>
                                     </select>
                                 </div>
-                                <form style={{ padding: 0 }} className="form-inline col-sm my-2 my-lg-0">
-                                    <input style={{ borderRadius: 0, border: 0, width: '85%' }} className="form-control mr-sm-0" type="search" placeholder="Buscar" aria-label="Buscar" />
-                                    <button className="btn btn-success my-2 my-sm-0" type="submit" style={{ borderRadius: 0, width: '15%' }}>Search</button>
+                                <form style={{ padding: 0 }} onSubmit={e => e.preventDefault()} className="form-inline col-sm my-2 my-lg-0">
+                                    <input id="search-input" style={{ borderRadius: 0, border: 0, width: '85%' }} className="form-control mr-sm-0" type="search" placeholder="Buscar" aria-label="Buscar" onChange={this.handleSearch} />
+                                    <button onClick={this.handleSearch} className="btn btn-success my-2 my-sm-0" type="button" style={{ borderRadius: 0, width: '15%' }}>Buscar</button>
                                 </form>
                             </div>
                             <main className="row my-lg-4">
@@ -60,9 +95,9 @@ class Freelancers extends Component {
                                     <div className="bg-white text-dark" style={{ padding: 15 }}>
                                         <button className="btn btn-outline-secondary btn-block">FILTROS</button>
                                         <div className="d-none d-lg-block">
-                                            <label htmlFor="select-acti-pro">Actividad profecional</label>
+                                            <label htmlFor="select-acti-pro">Actividad profesional</label>
                                             <select id="select-acti-pro" className="custom-select">
-                                                <option>Todas las profeciones</option>
+                                                <option>Todas las profesiones</option>
                                             </select>
                                             <label htmlFor="select-skills">Habilidades</label>
                                             <select id="select-skills" className="custom-select" multiple>

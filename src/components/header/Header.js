@@ -143,7 +143,7 @@ class Header extends Component {
                                 <a className="nav-link" href="/jobs">TRABAJOS</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/how_it_works">¿CÓMO FUNCIONA?</a>
+                                <a className="nav-link" target="_blank" download href="https://firebasestorage.googleapis.com/v0/b/code-script.appspot.com/o/how-it-works%2FManual%20de%20Usuario%20-%20NetJob.pdf?alt=media&token=bc2e60d1-d1a3-433c-bb80-2691d7ae53c8">¿CÓMO FUNCIONA?</a>
                             </li>
                         </ul>
                         <ul className="navbar-nav mt-2 mt-md-0">

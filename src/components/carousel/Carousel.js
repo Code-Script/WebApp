@@ -92,7 +92,7 @@ class Carousel extends Component {
                             <div className="carousel-caption text-right">
                                 <h1 className="slide3">¿Qué tipo de trabajo puedo hacer?</h1>
                                 <p>Trabajos pequeños, medianos y grandes. Trabajos pagados a precio fijo o por hora. Trabajos que requieran un conjunto de habilidades, costo o fechas específicas.</p>
-                                <p><a className="btn btn-lg btn-primary" href="/how_it_works" role="button">Explorar</a></p>
+                                <p><a className="btn btn-lg btn-primary" href="/jobs" role="button">Explorar</a></p>
                             </div>
                         </div>
                     </div>

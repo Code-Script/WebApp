@@ -44,7 +44,7 @@ class JobHiring extends Component {
                         {/* <span data-content="Right?" data-toggle="popover" data-trigger="focus" title="Opciones" data-container="body" data-placement="bottom">
                             <i className="fas fa-ellipsis-v"></i>
                         </span> */}
-                        { this.props.dropdown === false ? "" : <div className="dropdown">
+                        {/* { this.props.dropdown === false ? "" : <div className="dropdown">
                             <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 
                             </button>
@@ -52,7 +52,7 @@ class JobHiring extends Component {
                                 <a className="dropdown-item" href="#">Editar</a>
                                 <a className="dropdown-item" href="#">Cancelar</a>
                             </div>
-                        </div>}
+                        </div>} */}
                     </div>
                 </div>
                 <hr />
