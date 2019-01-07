@@ -194,7 +194,7 @@ class JobApplicants extends Component {
                                 <div className="row text-left pt-1">
                                     <div className="col-8">
                                         <button style={{ width: '49%' }} className="btn btn-success mr-1 m" id="hireUser" onClick={this.handleHire}>CONTRATAR</button>
-                                        <button style={{ width: '49%' }} className="btn btn-info" onClick={this.handleSendMessage}>ENVIAR MENSAJE</button>
+                                        {/* <button style={{ width: '49%' }} className="btn btn-info" onClick={this.handleSendMessage}>ENVIAR MENSAJE</button> */}
                                     </div>
                                 </div>
                             }
